@@ -34,10 +34,10 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install dependencies
-        run: npm install
+        run: cd client && npm install
 
-      - name: Run the tests and generate coverage report
-        run: npm test
+      - name: Run the tests
+        run: cd client && npm test
 
       - name: Build
-        run: npm run build
+        run: cd client && npm run build
