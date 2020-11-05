@@ -41,3 +41,9 @@ jobs:
 
       - name: Build
         run: cd client && npm run build
+
+      - name: Add frontend remote origin
+        run: git remote add heroku-frontend https://heroku:${{ secrets.HEROKU_API_TOKEN }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+
+      - name: Deploy frontend to Heroku
+        run: git push heroku-frontend `git subtree split --prefix frontend master`:refs/heads/master --force
